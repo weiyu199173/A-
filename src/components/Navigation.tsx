@@ -1,7 +1,7 @@
-import { Activity, Bell, Search, LayoutDashboard, LineChart, Target, Eye } from 'lucide-react';
+import { Activity, Bell, Search, LayoutDashboard, LineChart, Target, Eye, Settings } from 'lucide-react';
 import React from 'react';
 
-export function TopBar({ title, status = '已开盘', statusColor = 'text-primary' }: { title?: string, status?: string, statusColor?: string }) {
+export function TopBar({ title, status = '已开盘', statusColor = 'text-primary', onOpenSettings }: { title?: string, status?: string, statusColor?: string, onOpenSettings?: () => void }) {
   return (
     <header className="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-md shadow-none flex justify-between items-center px-4 h-14 border-b border-neutral-800">
       <div className="flex items-center gap-2">
@@ -12,9 +12,14 @@ export function TopBar({ title, status = '已开盘', statusColor = 'text-primar
           <span className={`font-sans text-xs font-black tracking-wider uppercase ${statusColor}`}>{status}</span>
         )}
       </div>
-      <button className="hover:text-amber-400 transition-colors active:opacity-70 text-neutral-500">
-        <Search className="w-5 h-5" />
-      </button>
+      <div className="flex items-center gap-3">
+        <button className="hover:text-amber-400 transition-colors active:opacity-70 text-neutral-500">
+          <Search className="w-5 h-5" />
+        </button>
+        <button onClick={onOpenSettings} className="hover:text-amber-400 transition-colors active:opacity-70 text-neutral-500">
+          <Settings className="w-5 h-5" />
+        </button>
+      </div>
     </header>
   );
 }

@@ -10,9 +10,11 @@ import { DashboardView } from './views/DashboardView';
 import { AnalysisView } from './views/AnalysisView';
 import { WatchlistView } from './views/WatchlistView';
 import { StrategyView } from './views/StrategyView';
+import { SettingsModal } from './components/SettingsModal';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const getTopBarTitle = () => {
     switch (activeTab) {
@@ -35,7 +37,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#131313] text-[#e5e2e1] font-sans selection:bg-[#d4af37] selection:text-[#554300]">
-      <TopBar title={getTopBarTitle()} status={getStatusText()} />
+      <TopBar 
+        title={getTopBarTitle()} 
+        status={getStatusText()} 
+        onOpenSettings={() => setIsSettingsOpen(true)}
+      />
       
       <AnimatePresence mode="wait">
         {activeTab === 'dashboard' && <DashboardView key="dashboard" />}
@@ -45,6 +51,11 @@ export default function App() {
       </AnimatePresence>
 
       <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
+      
+      <SettingsModal 
+        isOpen={isSettingsOpen} 
+        onClose={() => setIsSettingsOpen(false)} 
+      />
     </div>
   );
 }

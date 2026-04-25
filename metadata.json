@@ -1,6 +1,6 @@
 {
   "name": "A股量化分析系统",
-  "description": "",
+  "description": "基于 React 的 A 股量化交易分析 Web 前端，提供市场温度、贝叶斯概率预测引擎、Alpha 因子画像以及 DeepSeek 深度研判等功能面板，包含仪表盘、分析和自选股三大核心视图。国人偏好的黑金主题风格。",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
