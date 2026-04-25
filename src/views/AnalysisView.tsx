@@ -13,11 +13,11 @@ export function AnalysisView() {
       className="p-4 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4 pb-24 pt-20"
     >
       {/* Stock Header Section */}
-      <section className="col-span-1 md:col-span-12 flex flex-col md:flex-row justify-between items-start md:items-end bg-surface-container border border-surface-container-high rounded-xl p-4 shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+      <section className="col-span-1 md:col-span-12 flex flex-col md:flex-row justify-between items-start md:items-end crystal-card p-4">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-semibold text-on-surface">贵州茅台</h2>
-            <span className="text-[11px] font-semibold text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded border border-surface-container">SH: 600519</span>
+            <h2 className="text-lg font-semibold text-white tracking-wide">贵州茅台</h2>
+            <span className="text-[11px] font-bold text-on-surface-variant bg-surface-container-highest/50 px-2 py-0.5 rounded border border-white/10 shadow-inner">SH: 600519</span>
           </div>
           <div className="flex items-center gap-2 text-on-surface-variant text-[13px] font-medium mt-1">
             <LayoutGrid className="w-4 h-4" />
@@ -25,18 +25,18 @@ export function AnalysisView() {
           </div>
         </div>
         <div className="flex flex-col items-start md:items-end mt-4 md:mt-0">
-          <div className="text-3xl font-bold text-error flex items-center gap-1 font-mono">
+          <div className="text-3xl font-bold gem-text-red flex items-center gap-1 font-mono">
             <span>1,688.00</span>
-            <TrendingUp className="w-6 h-6" />
+            <TrendingUp className="w-6 h-6 text-error" />
           </div>
-          <div className="text-[13px] font-medium text-error opacity-90 pb-1 font-mono">
+          <div className="text-[13px] font-bold gem-text-red opacity-90 pb-1 font-mono">
             +40.00 (+2.45%)
           </div>
         </div>
       </section>
 
       {/* 5-Dimension Radar Chart */}
-      <article className="col-span-1 md:col-span-6 bg-surface-container border border-surface-container-high rounded-xl p-4 flex flex-col relative overflow-hidden">
+      <article className="col-span-1 md:col-span-6 crystal-card p-4 flex flex-col relative overflow-hidden">
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
         <header className="flex items-center justify-between mb-2 z-10">
           <h3 className="text-[13px] font-medium text-on-surface uppercase tracking-wider">Alpha 五维画像</h3>
@@ -48,20 +48,20 @@ export function AnalysisView() {
       </article>
 
       {/* Real-time Probability Pointer */}
-      <article className="col-span-1 md:col-span-6 bg-surface-container border border-surface-container-high rounded-xl p-4 flex flex-col relative">
+      <article className="col-span-1 md:col-span-6 crystal-card p-4 flex flex-col relative">
         <header className="flex items-center justify-between mb-4">
-          <h3 className="text-[13px] font-medium text-on-surface uppercase tracking-wider flex items-center gap-2">
+          <h3 className="text-[13px] font-bold gold-3d-text uppercase tracking-wider flex items-center gap-2">
             实时预测
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(242,202,80,0.8)]"></span>
           </h3>
-          <Clock className="w-5 h-5 text-primary-container" />
+          <Clock className="w-5 h-5 text-primary-container drop-shadow-sm" />
         </header>
         
         <div className="flex-1 flex flex-col items-center justify-center relative mt-4">
           <ProbabilityGaugeChart value={68} />
           <div className="absolute bottom-6 flex flex-col items-center pointer-events-none">
-            <span className="text-3xl font-bold text-primary font-mono leading-none drop-shadow-md">68%</span>
-            <span className="text-[11px] font-semibold text-primary-container mt-2 uppercase tracking-widest bg-primary-container/10 px-3 py-1 rounded-full border border-primary-container/30">看涨</span>
+            <span className="text-4xl font-bold gold-3d-text font-mono leading-none">68%</span>
+            <span className="text-[12px] font-bold text-primary-container mt-2 tracking-widest bg-primary-container/10 px-4 py-1.5 rounded-full border border-primary-container/40 shadow-inner">看涨</span>
           </div>
         </div>
         
@@ -73,14 +73,16 @@ export function AnalysisView() {
       </article>
 
       {/* AI Analysis Section */}
-      <article className="col-span-1 md:col-span-12 bg-surface-container border border-surface-container-high rounded-xl p-[1px] relative group overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-surface-container-high via-primary-container/20 to-surface-container-high opacity-50"></div>
-        <div className="relative bg-surface-container m-[1px] rounded-xl p-4 h-full backdrop-blur-xl">
-          <header className="flex items-center gap-2 mb-3">
-            <Sparkles className="w-5 h-5 text-primary" fill="currentColor" />
-            <h3 className="text-[13px] font-medium text-primary uppercase tracking-wider font-bold">DeepSeek Pro AI 深度研判</h3>
+      <article className="col-span-1 md:col-span-12 crystal-card p-[1px] relative group overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-container/30 to-transparent opacity-60"></div>
+        <div className="relative bg-[#151518]/90 m-[1px] rounded-xl p-5 h-full">
+          <header className="flex items-center gap-2 mb-4">
+            <div className="gold-3d-element p-1.5 rounded flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-black" fill="currentColor" />
+            </div>
+            <h3 className="text-[14px] gold-3d-text uppercase tracking-wider font-bold">DeepSeek Pro AI 深度研判</h3>
           </header>
-          <div className="bg-surface-dim/50 border border-surface-container-highest rounded-lg p-4 text-sm text-on-surface-variant leading-relaxed">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-5 text-[13px] text-on-surface-variant leading-relaxed shadow-inner">
             <p>超预期的盈利表现加上强有力的行业政策支持，表明近期上涨动能强劲。量化模型检测到过去三个交易日有显著的机构资金流入，打破了前期的盘整格局。技术面上，MACD出现看涨交叉，同时国内新闻流的情绪分析保持高度乐观。</p>
             <div className="mt-3 flex items-center gap-2 px-3 py-2 bg-primary/10 border border-primary/20 rounded-md text-primary font-medium text-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>

@@ -3,7 +3,7 @@ import React from 'react';
 
 export function TopBar({ title, status = '已开盘', statusColor = 'text-primary', onOpenSettings }: { title?: string, status?: string, statusColor?: string, onOpenSettings?: () => void }) {
   return (
-    <header className="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-md shadow-none flex justify-between items-center px-4 h-14 border-b border-neutral-800">
+    <header className="fixed top-0 w-full z-50 crystal-panel flex justify-between items-center px-4 h-14">
       <div className="flex items-center gap-2">
         <Activity className="w-5 h-5 text-amber-500" />
         {title ? (
@@ -33,7 +33,7 @@ export function BottomNav({ activeTab, setActiveTab }: { activeTab: string, setA
   ];
 
   return (
-    <nav className="fixed bottom-0 w-full z-50 border-t border-neutral-800 bg-neutral-950/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.4)] flex justify-around items-center h-16 px-2 pb-safe">
+    <nav className="fixed bottom-0 w-full z-50 crystal-panel flex justify-around items-center h-16 px-2 pb-safe">
       {navItems.map((item) => {
         const isActive = activeTab === item.id;
         const Icon = item.icon;
