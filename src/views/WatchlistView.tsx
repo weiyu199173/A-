@@ -18,9 +18,9 @@ export function WatchlistView() {
             系统预警
           </h2>
         </div>
-
+        
         {/* Risk Warning Card */}
-        <div className="bg-error-container/10 border border-error/20 rounded-xl p-4 relative overflow-hidden backdrop-blur-sm group hover:border-error/40 transition-colors">
+        <div className="bg-error-container/20 border border-error/30 rounded-xl p-4 relative overflow-hidden backdrop-blur-sm group hover:border-error/50 transition-colors">
           <div className="absolute top-0 left-0 w-1 h-full bg-error shadow-[0_0_12px_var(--color-error)]"></div>
           <div className="flex items-start gap-3">
             <ShieldAlert className="w-5 h-5 text-error mt-0.5" />
@@ -41,26 +41,26 @@ export function WatchlistView() {
             <span className="w-1.5 h-1.5 rounded-full bg-primary-container shadow-[0_0_6px_var(--color-primary-container)]"></span> Alpha 信号
           </h3>
           <p className="text-[13px] font-medium text-on-surface mb-4">概率突变 &gt; 30%</p>
-          <div className="flex justify-between items-end border-t border-surface-variant pt-3 w-full relative z-10">
+          <div className="flex justify-between items-end border-t border-surface-container-highest pt-3 w-full relative z-10">
             <div>
               <p className="text-sm text-on-surface-variant text-xs mb-1">比亚迪 (002594.SZ)</p>
               <p className="text-[11px] font-semibold text-outline tracking-wide">检测到看涨转变</p>
             </div>
             <div className="text-right">
-              <span className="text-3xl font-bold text-primary-container block leading-none">+34%</span>
+              <span className="text-3xl font-bold text-primary-container block leading-none font-mono">+34%</span>
             </div>
           </div>
         </div>
 
         {/* Policy News Card */}
-        <div className="bg-surface-container border border-surface-variant rounded-xl p-4 hover:bg-surface-container-high transition-colors cursor-pointer">
+        <div className="bg-surface-container border border-surface-container-highest rounded-xl p-4 hover:border-outline-variant transition-colors cursor-pointer">
           <div className="flex items-center gap-2 mb-3">
             <BookOpen className="w-4 h-4 text-outline-variant" />
             <h3 className="text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider">宏观政策</h3>
           </div>
           <p className="text-[13px] font-medium text-on-surface mb-3 leading-snug">中国人民银行宣布计划外降准立即生效</p>
           <div className="flex justify-between items-center">
-            <span className="text-[11px] font-semibold text-outline">14:32:05 EST</span>
+            <span className="text-[11px] font-semibold text-outline-variant font-mono">14:32:05</span>
             <span className="text-[11px] font-semibold text-primary hover:text-primary-container flex items-center gap-1">
               影响分析 <ChevronRight className="w-3 h-3" />
             </span>
@@ -122,32 +122,32 @@ export function WatchlistView() {
                 <span className="text-[11px] font-semibold text-outline font-mono mt-0.5">600519.SH</span>
               </div>
               <div className="col-span-3 flex flex-col items-end justify-center">
-                 <span className="text-[13px] font-medium text-on-surface">1,680.00</span>
-                 <span className="text-[11px] font-medium text-tertiary-container bg-tertiary-container/10 px-1 rounded mt-1">+1.25%</span>
+                 <span className="text-[13px] font-medium text-on-surface font-mono">1,680.00</span>
+                 <span className="text-[11px] font-medium text-error bg-error/10 px-1 rounded mt-1 font-mono">+1.25%</span>
               </div>
               <div className="col-span-5 flex items-center justify-end gap-3">
-                <div className="w-16 h-1.5 bg-surface-container-lowest rounded-full overflow-hidden relative border border-outline-variant/20 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] hidden sm:block">
-                  <div className="absolute left-0 top-0 h-full bg-gradient-to-r from-tertiary-container/50 to-tertiary-container w-[45%] rounded-full"></div>
+                <div className="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden relative border border-outline-variant/20 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] hidden sm:block">
+                  <div className="absolute left-0 top-0 h-full bg-gradient-to-r from-error/50 to-error w-[45%] rounded-full shadow-[0_0_4px_rgba(255,68,68,0.5)]"></div>
                 </div>
-                <span className="text-[11px] font-semibold text-tertiary-container flex items-center gap-0.5 min-w-[36px] justify-end">
+                <span className="text-[11px] font-semibold text-error flex items-center gap-0.5 min-w-[36px] justify-end">
                   <TrendingUp className="w-3.5 h-3.5" /> 12%
                 </span>
               </div>
             </div>
 
             {/* Standard Down */}
-            <div className="grid grid-cols-12 gap-4 px-4 py-3 border-b border-surface-variant/50 hover:bg-surface-container transition-colors items-center group cursor-pointer pl-3">
+            <div className="grid grid-cols-12 gap-4 px-4 py-3 border-b border-surface-container-highest hover:bg-surface-container transition-colors items-center group cursor-pointer pl-3">
               <div className="col-span-4 flex flex-col">
-                <span className="text-[13px] font-medium text-on-surface group-hover:text-inverse-surface transition-colors">中国平安</span>
+                <span className="text-[13px] font-medium text-on-surface group-hover:text-primary-container transition-colors">中国平安</span>
                 <span className="text-[11px] font-semibold text-outline font-mono mt-0.5">601318.SH</span>
               </div>
               <div className="col-span-3 flex flex-col items-end justify-center">
-                 <span className="text-[13px] font-medium text-on-surface">42.15</span>
-                 <span className="text-[11px] font-medium text-secondary bg-secondary/10 px-1 rounded mt-1">-0.85%</span>
+                 <span className="text-[13px] font-medium text-on-surface font-mono">42.15</span>
+                 <span className="text-[11px] font-medium text-secondary bg-secondary/10 px-1 rounded mt-1 font-mono">-0.85%</span>
               </div>
-              <div className="col-span-5 flex items-center justify-end gap-3 opacity-70">
-                <div className="w-16 h-1.5 bg-surface-container-lowest rounded-full overflow-hidden relative border border-outline-variant/20 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] hidden sm:block">
-                  <div className="absolute right-0 top-0 h-full bg-gradient-to-l from-secondary/50 to-secondary w-[25%] rounded-full"></div>
+              <div className="col-span-5 flex items-center justify-end gap-3">
+                <div className="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden relative border border-outline-variant/20 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)] hidden sm:block">
+                  <div className="absolute right-0 top-0 h-full bg-gradient-to-l from-secondary/50 to-secondary w-[25%] rounded-full shadow-[0_0_4px_rgba(0,200,83,0.5)]"></div>
                 </div>
                 <span className="text-[11px] font-semibold text-secondary flex items-center gap-0.5 min-w-[36px] justify-end">
                    <TrendingDown className="w-3.5 h-3.5" /> 8%

@@ -11,6 +11,7 @@ import { AnalysisView } from './views/AnalysisView';
 import { WatchlistView } from './views/WatchlistView';
 import { StrategyView } from './views/StrategyView';
 import { SettingsModal } from './components/SettingsModal';
+import { Disclaimer } from './components/Disclaimer';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -36,19 +37,25 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#131313] text-[#e5e2e1] font-sans selection:bg-[#d4af37] selection:text-[#554300]">
+    <div className="min-h-screen bg-background text-on-background font-sans selection:bg-primary-container selection:text-on-primary-container flex flex-col">
       <TopBar 
         title={getTopBarTitle()} 
         status={getStatusText()} 
         onOpenSettings={() => setIsSettingsOpen(true)}
       />
       
-      <AnimatePresence mode="wait">
-        {activeTab === 'dashboard' && <DashboardView key="dashboard" />}
-        {activeTab === 'analysis' && <AnalysisView key="analysis" />}
-        {activeTab === 'watchlist' && <WatchlistView key="watchlist" />}
-        {activeTab === 'strategy' && <StrategyView key="strategy" />}
-      </AnimatePresence>
+      <div className="flex-1 flex flex-col relative w-full">
+        <AnimatePresence mode="wait">
+          {activeTab === 'dashboard' && <DashboardView key="dashboard" />}
+          {activeTab === 'analysis' && <AnalysisView key="analysis" />}
+          {activeTab === 'watchlist' && <WatchlistView key="watchlist" />}
+          {activeTab === 'strategy' && <StrategyView key="strategy" />}
+        </AnimatePresence>
+      </div>
+
+      <div className="pb-16 lg:pb-0"> {/* Padding for mobile nav */}
+        <Disclaimer />
+      </div>
 
       <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
       
