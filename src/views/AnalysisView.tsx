@@ -1,10 +1,24 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { TrendingUp, LayoutGrid, Clock, Sparkles } from 'lucide-react';
+import { TrendingUp, TrendingDown, LayoutGrid, Clock, Sparkles } from 'lucide-react';
 import { FactorRadarChart } from '../components/charts/FactorRadarChart';
 import { ProbabilityGaugeChart } from '../components/charts/ProbabilityGaugeChart';
+import { StockInfo } from '../types';
 
-export function AnalysisView() {
+export function AnalysisView({ stock }: { stock?: StockInfo }) {
+  if (!stock) {
+    stock = {
+      name: '贵州茅台',
+      code: 'SH: 600519',
+      price: '1,688.00',
+      change: '+40.00 (+2.45%)',
+      isUp: true,
+      industry: '酿酒行业',
+      probValue: 68,
+      probText: '看涨'
+    };
+  }
+
   return (
     <motion.main 
       initial={{ opacity: 0, y: 10 }}
@@ -16,21 +30,21 @@ export function AnalysisView() {
       <section className="col-span-1 md:col-span-12 flex flex-col md:flex-row justify-between items-start md:items-end crystal-card p-4">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-semibold text-white tracking-wide">贵州茅台</h2>
-            <span className="text-[11px] font-bold text-on-surface-variant bg-surface-container-highest/50 px-2 py-0.5 rounded border border-white/10 shadow-inner">SH: 600519</span>
+            <h2 className="text-lg font-semibold text-white tracking-wide">{stock.name}</h2>
+            <span className="text-[11px] font-bold text-on-surface-variant bg-surface-container-highest/50 px-2 py-0.5 rounded border border-white/10 shadow-inner">{stock.code}</span>
           </div>
           <div className="flex items-center gap-2 text-on-surface-variant text-[13px] font-medium mt-1">
             <LayoutGrid className="w-4 h-4" />
-            <span>酿酒行业</span>
+            <span>{stock.industry || '未分类'}</span>
           </div>
         </div>
         <div className="flex flex-col items-start md:items-end mt-4 md:mt-0">
-          <div className="text-3xl font-bold gem-text-red flex items-center gap-1 font-mono">
-            <span>1,688.00</span>
-            <TrendingUp className="w-6 h-6 text-error" />
+          <div className={`text-3xl font-bold ${stock.isUp ? 'gem-text-red' : 'gem-text-green'} flex items-center gap-1 font-mono`}>
+            <span>{stock.price}</span>
+            {stock.isUp ? <TrendingUp className="w-6 h-6 text-error" /> : <TrendingDown className="w-6 h-6 text-secondary" />}
           </div>
-          <div className="text-[13px] font-bold gem-text-red opacity-90 pb-1 font-mono">
-            +40.00 (+2.45%)
+          <div className={`text-[13px] font-bold ${stock.isUp ? 'gem-text-red' : 'gem-text-green'} opacity-90 pb-1 font-mono`}>
+            {stock.change}
           </div>
         </div>
       </section>
@@ -58,10 +72,10 @@ export function AnalysisView() {
         </header>
         
         <div className="flex-1 flex flex-col items-center justify-center relative mt-4">
-          <ProbabilityGaugeChart value={68} />
+          <ProbabilityGaugeChart value={stock.probValue || 50} />
           <div className="absolute bottom-6 flex flex-col items-center pointer-events-none">
-            <span className="text-4xl font-bold gold-3d-text font-mono leading-none">68%</span>
-            <span className="text-[12px] font-bold text-primary-container mt-2 tracking-widest bg-primary-container/10 px-4 py-1.5 rounded-full border border-primary-container/40 shadow-inner">看涨</span>
+            <span className="text-4xl font-bold gold-3d-text font-mono leading-none">{stock.probValue || 50}%</span>
+            <span className="text-[12px] font-bold text-primary-container mt-2 tracking-widest bg-primary-container/10 px-4 py-1.5 rounded-full border border-primary-container/40 shadow-inner">{stock.probText || '震荡'}</span>
           </div>
         </div>
         

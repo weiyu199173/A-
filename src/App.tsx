@@ -12,10 +12,27 @@ import { WatchlistView } from './views/WatchlistView';
 import { StrategyView } from './views/StrategyView';
 import { SettingsModal } from './components/SettingsModal';
 import { Disclaimer } from './components/Disclaimer';
+import { StockInfo } from './types';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  
+  const [selectedStock, setSelectedStock] = useState<StockInfo>({
+    name: '贵州茅台',
+    code: 'SH: 600519',
+    price: '1,688.00',
+    change: '+40.00 (+2.45%)',
+    isUp: true,
+    industry: '酿酒行业',
+    probValue: 68,
+    probText: '看涨'
+  });
+
+  const handleSelectStock = (stock: StockInfo) => {
+    setSelectedStock(stock);
+    setActiveTab('analysis');
+  };
 
   const getTopBarTitle = () => {
     switch (activeTab) {
@@ -46,9 +63,9 @@ export default function App() {
       
       <div className="flex-1 flex flex-col relative w-full">
         <AnimatePresence mode="wait">
-          {activeTab === 'dashboard' && <DashboardView key="dashboard" />}
-          {activeTab === 'analysis' && <AnalysisView key="analysis" />}
-          {activeTab === 'watchlist' && <WatchlistView key="watchlist" />}
+          {activeTab === 'dashboard' && <DashboardView key="dashboard" onSelectStock={handleSelectStock} />}
+          {activeTab === 'analysis' && <AnalysisView key="analysis" stock={selectedStock} />}
+          {activeTab === 'watchlist' && <WatchlistView key="watchlist" onSelectStock={handleSelectStock} />}
           {activeTab === 'strategy' && <StrategyView key="strategy" />}
         </AnimatePresence>
       </div>
@@ -66,4 +83,3 @@ export default function App() {
     </div>
   );
 }
-

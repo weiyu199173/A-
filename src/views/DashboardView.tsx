@@ -1,8 +1,15 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { AlertCircle, TrendingUp, ShieldCheck, Zap } from 'lucide-react';
+import { AlertCircle, TrendingUp, ShieldCheck, Zap, TrendingDown, ChevronRight } from 'lucide-react';
+import { StockInfo } from '../types';
 
-export function DashboardView() {
+export function DashboardView({ onSelectStock }: { onSelectStock?: (stock: StockInfo) => void }) {
+  const topStocks: StockInfo[] = [
+    { name: '比亚迪', code: 'SZ: 002594', price: '245.80', change: '+4.80%', isUp: true, probValue: 85, probText: '看涨强烈', industry: '汽车' },
+    { name: '贵州茅台', code: 'SH: 600519', price: '1,680.00', change: '+1.25%', isUp: true, industry: '酿酒行业', probValue: 68, probText: '看涨' },
+    { name: '中国平安', code: 'SH: 601318', price: '42.15', change: '-0.85%', isUp: false, industry: '保险', probValue: 32, probText: '看跌' }
+  ];
+
   return (
     <motion.main 
       initial={{ opacity: 0, y: 10 }}
@@ -47,11 +54,11 @@ export function DashboardView() {
       </section>
 
       {/* Bayesian Probability Engine */}
-      <section className="md:col-span-12 lg:col-span-6 crystal-card p-6">
-        <div className="flex justify-between items-center mb-6">
+      <section className="md:col-span-12 lg:col-span-6 crystal-card p-6 flex flex-col">
+        <div className="flex justify-between items-center mb-4">
           <div>
-            <h2 className="text-lg font-semibold gold-3d-text">贝叶斯概率引擎</h2>
-            <p className="text-sm text-on-surface-variant font-medium">变分隐马尔可夫模型状态分布</p>
+            <h2 className="text-lg font-semibold gold-3d-text">贝叶斯板块预测</h2>
+            <p className="text-sm text-on-surface-variant font-medium">变分隐马尔可夫模型分布</p>
           </div>
           <div className="flex items-center gap-1 text-primary">
             <ShieldCheck className="w-5 h-5 fill-current filter drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]" />
@@ -59,34 +66,72 @@ export function DashboardView() {
           </div>
         </div>
         
-        <div className="space-y-6 mt-8">
-          <div>
+        <div className="flex-1 overflow-y-auto pr-2 space-y-4">
+          <div className="bg-white/5 border border-white/10 rounded-lg p-3">
             <div className="flex justify-between mb-2">
-              <span className="text-[13px] font-medium text-on-surface flex items-center gap-2"><span className="w-3 h-3 rounded-full gem-red shadow-sm"></span> 看多状态</span>
-              <span className="text-[13px] font-bold gem-text-red font-mono">45%</span>
+              <span className="text-[13px] font-medium text-on-surface flex items-center gap-2"><span className="w-3 h-3 rounded-full gem-red shadow-sm"></span> 科技板块 (看多)</span>
+              <span className="text-[13px] font-bold gem-text-red font-mono">68%</span>
             </div>
-            <div className="h-2.5 w-full bg-surface-container-highest rounded-full overflow-hidden shadow-inner border border-white/5">
-              <div className="h-full gem-red" style={{ width: '45%' }}></div>
+            <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden shadow-inner border border-white/5">
+              <div className="h-full gem-red" style={{ width: '68%' }}></div>
             </div>
           </div>
-          <div>
+          
+          <div className="bg-white/5 border border-white/10 rounded-lg p-3">
             <div className="flex justify-between mb-2">
-              <span className="text-[13px] font-medium text-on-surface flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-gradient-to-br from-surface-variant to-outline shadow-sm"></span> 震荡状态</span>
-              <span className="text-[13px] font-bold text-on-surface-variant font-mono">35%</span>
+              <span className="text-[13px] font-medium text-on-surface flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-gradient-to-br from-surface-variant to-outline shadow-sm"></span> 医药板块 (震荡)</span>
+              <span className="text-[13px] font-bold text-on-surface-variant font-mono">51%</span>
             </div>
-            <div className="h-2.5 w-full bg-surface-container-highest rounded-full overflow-hidden shadow-inner border border-white/5">
-              <div className="h-full bg-gradient-to-r from-surface-variant to-outline-variant" style={{ width: '35%' }}></div>
+            <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden shadow-inner border border-white/5">
+              <div className="h-full bg-gradient-to-r from-surface-variant to-outline-variant" style={{ width: '51%' }}></div>
             </div>
           </div>
-          <div>
+
+          <div className="bg-white/5 border border-white/10 rounded-lg p-3">
             <div className="flex justify-between mb-2">
-              <span className="text-[13px] font-medium text-on-surface flex items-center gap-2"><span className="w-3 h-3 rounded-full gem-green shadow-sm"></span> 看空状态</span>
-              <span className="text-[13px] font-bold gem-text-green font-mono">20%</span>
+              <span className="text-[13px] font-medium text-on-surface flex items-center gap-2"><span className="w-3 h-3 rounded-full gem-green shadow-sm"></span> 地产板块 (看空)</span>
+              <span className="text-[13px] font-bold gem-text-green font-mono">82%</span>
             </div>
-            <div className="h-2.5 w-full bg-surface-container-highest rounded-full overflow-hidden shadow-inner border border-white/5">
-              <div className="h-full gem-green" style={{ width: '20%' }}></div>
+            <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden shadow-inner border border-white/5">
+              <div className="h-full gem-green" style={{ width: '82%' }}></div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Portfolio Quick Access */}
+      <section className="md:col-span-12 crystal-card p-6">
+        <h2 className="text-lg font-semibold gold-3d-text mb-6">贝叶斯单股预测 (活跃自选)</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {topStocks.map((stock, idx) => (
+            <div 
+              key={idx}
+              onClick={() => onSelectStock?.(stock)}
+              className="bg-white/5 border border-white/10 backdrop-blur-md p-4 rounded-xl hover:bg-white/10 transition-colors group shadow-inner cursor-pointer relative overflow-hidden"
+            >
+              {stock.probValue && stock.probValue > 70 && stock.isUp && (
+                 <div className="absolute left-0 top-0 w-1 h-full bg-primary-container shadow-[0_0_8px_var(--color-primary-container)]"></div>
+              )}
+              <div className="flex justify-between items-start mb-3 relative z-10">
+                <div className="flex flex-col">
+                  <span className="text-[15px] font-bold text-white group-hover:text-primary transition-colors">{stock.name}</span>
+                  <span className="text-[11px] text-on-surface-variant font-mono">{stock.code}</span>
+                </div>
+                <div className="flex flex-col items-end">
+                  <span className={`text-[15px] font-bold font-mono ${stock.isUp ? 'gem-text-red' : 'gem-text-green'}`}>{stock.price}</span>
+                  <span className="text-[11px] text-on-surface-variant flex items-center gap-1 font-mono">
+                    {stock.isUp ? <TrendingUp className="w-3 h-3 text-error" /> : <TrendingDown className="w-3 h-3 text-secondary" />} {stock.change}
+                  </span>
+                </div>
+              </div>
+              <div className="flex justify-between items-center border-t border-white/5 pt-3 mt-1 relative z-10">
+                <span className="text-[12px] text-on-surface-variant">预测胜率 ({stock.probText})</span>
+                <span className={`text-[13px] font-bold ${stock.isUp ? 'gem-text-red' : 'gem-text-green'} flex items-center gap-1`}>
+                  {stock.probValue}% <ChevronRight className="w-3 h-3 opacity-50" />
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
